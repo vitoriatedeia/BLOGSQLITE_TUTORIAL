@@ -14,6 +14,8 @@ db.serialize(() => {
   );
 });
 
+app.use("/static", express.static(__dirname + "/static"));
+
 // Cria conexão com o banco de dados
 
 const index =
