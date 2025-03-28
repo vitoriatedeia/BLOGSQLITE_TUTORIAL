@@ -1,10 +1,11 @@
 const express = require("express"); // Importa lib do Express
 const sqlite3 = require("sqlite3"); // Importa lib do sqlite3
 
-const PORT = 8000; // Porta do TCP do servidr HTTP da aplicação
-
 const app = express(); // Instância para o uso do Express
 
+const PORT = 8000; // Porta do TCP do servidr HTTP da aplicação
+
+//Cria conexão com o banco de dados
 const db = new sqlite3.Database("user.db"); //Instância para uso do Sqlite3, e usa o arquivo 'user.db'
 
 db.serialize(() => {
@@ -15,6 +16,9 @@ db.serialize(() => {
 });
 
 app.use("/static", express.static(__dirname + "/static"));
+
+//Configurar EJS como o motor de visualização
+app.set("view engine", "ejs");
 
 // Cria conexão com o banco de dados
 
@@ -30,7 +34,8 @@ o segundo, são os dados que serão enviados ao cliente (RESULT - 'res') */
 
 app.get("/", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/
-  res.send(index);
+  //res.send(index);
+  res.render("index");
 });
 
 app.get("/sobre", (req, res) => {
