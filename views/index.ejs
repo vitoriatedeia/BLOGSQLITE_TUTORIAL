@@ -2,69 +2,115 @@
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
+    <!-- Define a codificação de caracteres como UTF-8, permitindo o uso de caracteres especiais como "ç" e "á" -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Atividade formulário</title>
+    <!-- Faz com que a página seja responsiva, ajustando a largura ao tamanho do dispositivo -->
 
-    <!-- Link CSS externo -->
-    <link
-      rel="stylesheet"
-      href="./static/styles/styles.css"
-      class="stylesheet"
-    />
+    <title>Atividade Formulário</title>
+    <!-- Define o título da página que será exibido na aba do navegador -->
 
-    <!-- Link JS externo -->
-    <script src="./static/scripts/scripts.js" defer></script>
+    <!-- LINK PARA CSS EXTERNO -->
+    <link rel="stylesheet" href="./styles/styles.css" />
+    <!-- Importa um arquivo CSS externo para estilizar a página -->
+
+    <!-- LINK PARA JS EXTERNO -->
+    <script src="./script/script.js" defer></script>
+    <!-- Importa um arquivo JavaScript externo e adia sua execução até que o HTML seja totalmente carregado -->
   </head>
+
   <body>
+    <!-- Container para animação de chuva -->
+    <div class="container_rain">
+      <span class="cloud"></span>
+      <!-- Representação visual de uma nuvem -->
+      <span class="cloud"></span>
+      <!-- Segunda nuvem para dar um efeito melhor na animação -->
+      <span class="cloud"></span>
+      <!-- Terceira nuvem para completar o efeito de chuva -->
+    </div>
+
+    <!-- Seção principal que contém o formulário -->
     <section class="container">
+      <!-- Área com título e mensagem motivacional -->
       <div class="image_container">
-        <h1>Crie sua conta</h1>
+        <h1>Crie sua conta e...</h1>
+        <!-- Título principal motivacional -->
         <p>
-          Compartilhe suas aventuras e <br />
-          descubra novos lugares ao redor do mundo!
+          Seja mais um<br />
+          do bando de loucos!
         </p>
+        <!-- Mensagem para incentivar o usuário a se cadastrar -->
       </div>
+
+      <!-- Formulário de cadastro -->
       <form id="cadastroForm">
+        <!-- Identificação do formulário para manipulação no JavaScript -->
+
         <div class="title">
           <h1>Cadastre-se</h1>
-          <p>Preencha os campos abaixo e torne-se parte da nossa comunidade</p>
+          <!-- Título do formulário -->
+          <p>Preencha os campos abaixo e torne-se parte da Fiel!</p>
+          <!-- Descrição incentivando o usuário a preencher os dados -->
         </div>
+
+        <!-- Campo de entrada para Nome -->
         <div class="input_data">
-          <input type="text" id="nome" name="nome" required />
-          <label for="">Nome</label>
+          <input type="text" id="nome" required />
+          <!-- Campo para inserir o nome, obrigatório -->
+          <label>Nome</label>
+          <!-- Rótulo para indicar o que deve ser inserido no campo -->
         </div>
+
+        <!-- Campo de entrada para Email -->
         <div class="input_data">
-          <input type="email" id="email" name="email" required />
-          <label for="">Email</label>
+          <input type="email" id="email" required />
+          <!-- Campo para inserir o e-mail, obrigatório e com validação de formato -->
+          <label>Email</label>
         </div>
+
+        <!-- Campo de entrada para Senha -->
         <div class="input_data">
-          <input type="password" id="password" name="password" required />
-          <label for="">Senha</label>
+          <input type="password" id="senha" required />
+          <!-- Campo para inserir a senha, obrigatório e ocultando os caracteres -->
+          <label>Senha</label>
         </div>
+
+        <!-- Campo de entrada para confirmação de Senha -->
         <div class="input_data">
-          <input
-            type="password"
-            id="confirmapassword"
-            name="password"
-            required
-          />
-          <label for="">Confirmar senha</label>
+          <input type="password" id="confirmarSenha" required />
+          <!-- Campo para inserir a confirmação da senha, obrigatório -->
+          <label>Confirmar Senha</label>
         </div>
+
+        <!-- Campo de entrada para Celular -->
         <div class="input_data">
-          <input type="tel" id="tel" name="tel" required />
-          <label for="">Contato</label>
+          <input type="tel" id="celular" maxlength="15" required />
+          <!-- Campo para inserir o celular, obrigatório, com um limite de 15 caracteres -->
+          <label>Celular</label>
         </div>
+
+        <!-- Campo de entrada para CPF -->
         <div class="input_data">
-          <input type="text" id="CPF" name="text" required />
-          <label for="">CPF</label>
+          <input type="text" id="cpf" required />
+          <!-- Campo para inserir o CPF, obrigatório -->
+          <label>CPF</label>
         </div>
+
+        <!-- Campo de entrada para RG -->
         <div class="input_data">
-          <input type="text" id="RG" name="text" required />
-          <label for="">RG</label>
+          <input type="text" id="rg" required />
+          <!-- Campo para inserir o RG, obrigatório -->
+          <label>RG</label>
         </div>
+
+        <!-- Área do botão de envio -->
         <div class="btnArea">
           <p class="msgError"></p>
+          <!-- Parágrafo onde mensagens de erro serão exibidas caso o usuário preencha algo incorretamente -->
+
           <button id="btnSubmit" type="submit">Enviar</button>
+          <!-- Botão que envia o formulário ao clicar, validando as informações -->
         </div>
       </form>
     </section>

@@ -15,6 +15,12 @@ db.serialize(() => {
   );
 });
 
+// __dirname é a variável interna do nodejs que guarda o caminho absoluto do projeto
+//console.log(__dirname + "/static");
+
+// Aqui seráacrescentado uma rota "/static" para a pasta __dirname + "/static"
+/*O app.use é usado para acrescentar rotas novas para o Express gerenciar e pode usar 
+Middleware para isto, que nesse caso é o express.static que gerencia rotas estáticas.*/
 app.use("/static", express.static(__dirname + "/static"));
 
 //Configurar EJS como o motor de visualização
@@ -22,11 +28,11 @@ app.set("view engine", "ejs");
 
 // Cria conexão com o banco de dados
 
-const index =
-  "<a href='/sobre'>Sobre </a><a href='/cadastro'>Cadastro </a><a href='/login'>Login </a>";
-const sobre = 'Você está na página "Sobre"<br><a href="/">Voltar</a>';
-const login = 'Você está na página "Login"<br><a href="/">Voltar</a>';
-const cadastro = 'Você está na página "Cadastro"<br><a href="/">Voltar</a>';
+// const index =
+//  "<a href='/sobre'>Sobre </a><a href='/cadastro'>Cadastro </a><a href='/login'>Login </a>";
+// const sobre = 'Você está na página "Sobre"<br><a href="/">Voltar</a>';
+// const login = 'Você está na página "Login"<br><a href="/">Voltar</a>';
+// const cadastro = 'Você está na página "Cadastro"<br><a href="/">Voltar</a>';
 
 /*Método express.get necessita de dois parâmetros
 Na ARROW FUNCTION, o primeiro são os dados do servidor (REQUISITION - 'req')
@@ -57,4 +63,3 @@ app.get("/cadastro", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor sendo executado na porta ${PORT}!`);
 });
-//teste teste
