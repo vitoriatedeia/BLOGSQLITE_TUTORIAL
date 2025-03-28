@@ -59,16 +59,27 @@ app.get("/login", (req, res) => {
   res.render(login);
 });
 
+app.get("/login", (req, res) => {
+  res.send("Login ainda não implementado.");
+});
+
 app.get("/cadastro", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/cadastro
   res.send(cadastro);
 });
 
 app.post("/cadastro", (req, res) => {
-  req.body
-    ? console.log(JSON.stringify(req.body))
-    : console.log(`Body vazio: ${req.body}`);
+  // Linha para deourar se está vindo dados no req.body
+  !req.body
+    ? console.log(`Body vazio: ${req.body}`)
+    : console.log(JSON.stringify(req.body));
   res.send(cadastro);
+
+  // Colocar aqui as validações e inclusão no banco de dados do cadastro do usuário
+
+  res.send(
+    `Bem-vindo usuário: ${req.body.username}, seu email é ${req.body.email}`
+  );
 });
 
 //app.listen() deve ser o último comando da aplicação (app.js)
