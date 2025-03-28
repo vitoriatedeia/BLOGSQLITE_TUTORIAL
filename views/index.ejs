@@ -11,7 +11,7 @@
     <!-- Define o título da página que será exibido na aba do navegador -->
 
     <!-- LINK PARA CSS EXTERNO -->
-    <link rel="stylesheet" href="/static/styles/styles.css" />
+    <link rel="stylesheet" href="/static/styles/styles.cssS" />
     <!-- Importa um arquivo CSS externo para estilizar a página -->
 
     <!-- LINK PARA JS EXTERNO -->
@@ -56,7 +56,7 @@
 
         <!-- Campo de entrada para Nome -->
         <div class="input_data">
-          <input type="text" id="nome" required />
+          <input type="text" id="nome" name="username" required />
           <!-- Campo para inserir o nome, obrigatório -->
           <label>Nome</label>
           <!-- Rótulo para indicar o que deve ser inserido no campo -->
@@ -71,7 +71,7 @@
 
         <!-- Campo de entrada para Senha -->
         <div class="input_data">
-          <input type="password" id="senha" required />
+          <input type="password" id="senha" name="password" required />
           <!-- Campo para inserir a senha, obrigatório e ocultando os caracteres -->
           <label>Senha</label>
         </div>
@@ -85,7 +85,7 @@
 
         <!-- Campo de entrada para Celular -->
         <div class="input_data">
-          <input type="tel" id="celular" maxlength="15" required />
+          <input type="tel" id="celular" name="phone" maxlength="15" required />
           <!-- Campo para inserir o celular, obrigatório, com um limite de 15 caracteres -->
           <label>Celular</label>
         </div>

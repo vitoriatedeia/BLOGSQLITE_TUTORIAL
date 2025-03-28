@@ -11,7 +11,7 @@ const db = new sqlite3.Database("user.db"); //Instância para uso do Sqlite3, e 
 db.serialize(() => {
   // Este método permite enviar comandos SQL em modo 'sequencial'
   db.run(
-    "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT)"
+    "CREATE TABLE IF NOT EXISTS users (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT, celular TEXT, cpf TEXT, rg TEXT)"
   );
 });
 
