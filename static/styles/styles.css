@@ -1,26 +1,56 @@
 @font-face {
-  font-family: "Copperplate";
-  src: url("/static/fonts/Copperplate.otf");
-}
-
-@font-face {
   font-family: "JoseFins";
   src: url("/static/fonts/JosefinSans.ttf");
 }
 
+@font-face {
+  font-family: "Copperplate";
+  src: url("/static/fonts/Copperplate.otf");
+}
+
 * {
-  box-sizing: border-box;
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
 body {
   height: 100vh;
-  background-color: #000000;
+  background-color: #375534;
 
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+header {
+  width: 100%;
+  padding: 10px 15px;
+  background-color: #0f2a1d;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header .logo {
+  color: #fff;
+  font-size: 3em;
+  letter-spacing: 1.5px;
+}
+
+header nav a {
+  color: #fff;
+  font-size: 1.5em;
+  margin-right: 16px;
+}
+
+header nav a:hover {
+  color: #e3eed4;
 }
 
 .container_rain {
@@ -56,14 +86,13 @@ body {
   top: 9.5%;
   left: 5%;
 }
-
 .rain {
   background-color: #e3eed4;
   width: 5px;
   height: 5px;
   border-radius: 0 50% 50% 50%;
   transform: rotate(45deg);
-  box-shadow: inset -25px 10px 0px -10px #8d8b8b;
+  box-shadow: inset -25px 10px 0px -10px #fefefe;
   z-index: 1000;
   position: absolute;
   top: 90px;
@@ -99,7 +128,7 @@ body {
   height: 80%;
   background-color: #e3eed4;
   border-radius: 30px;
-  box-shadow: 2px -10px 35px #ffffff;
+  box-shadow: 2px -10px 35px #0f2a1d;
 
   display: grid;
   grid-template-columns: 40% 60%;
@@ -113,8 +142,7 @@ body {
 .image_container {
   width: 100%;
   height: 100%;
-  background: url("/static/images/semifinal-do-paulistao.jpg") center / cover
-    no-repeat;
+  background: url("/static/images/wallpaper.jpg") center / cover no-repeat;
   border-radius: 0 30px 30px 0;
 
   padding-left: 10%;
@@ -146,7 +174,7 @@ body {
 
 .image_container h1 {
   font-family: "JoseFins";
-  font-size: 45px;
+  font-size: 50px;
 }
 
 .image_container p {
@@ -260,42 +288,4 @@ body {
   border: 1px solid #0f2a1d;
   color: #0f2a1d;
   transition: 0.7s;
-}
-
-@media (max-width: 830px) {
-  /* body {
-    background-color: red;
-  } */
-
-  .container {
-    grid-template-columns: 1fr;
-    grid-template-rows: 30% 70%;
-    height: 90%;
-  }
-
-  #cadastroForm {
-    height: 100%;
-    padding: 10px 0px;
-    font-size: 20px;
-  }
-
-  .container_rain {
-    display: none;
-  }
-
-  #cadastroForm p {
-    font-size: 10px;
-  }
-
-  #cadastroForm h1 {
-    font-size: 25px;
-  }
-
-  .image_container h1 {
-    font-size: 30px;
-  }
-
-  .image_container p {
-    font-size: 10px;
-  }
 }

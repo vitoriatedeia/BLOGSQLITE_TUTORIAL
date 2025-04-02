@@ -37,7 +37,6 @@ const index =
   "<a href='/sobre'>Sobre </a><a href='/cadastro'>Cadastro </a><a href='/login'>Login </a>";
 const sobre = 'Você está na página "Sobre"<br><a href="/">Voltar</a>';
 const login = 'Você está na página "Login"<br><a href="/">Voltar</a>';
-const cadastro = 'Você está na página "Cadastro"<br><a href="/">Voltar</a>';
 
 /*Método express.get necessita de dois parâmetros
 Na ARROW FUNCTION, o primeiro são os dados do servidor (REQUISITION - 'req')
@@ -46,34 +45,39 @@ o segundo, são os dados que serão enviados ao cliente (RESULT - 'res') */
 app.get("/", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/
   //res.send(index);
-  res.render("index");
+  console.log("GET /index");
+  res.render("index"); // Redireciona a ROTA cadastro
 });
 
 app.get("/sobre", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/sobre
-  res.send(sobre);
+  console.log("GET /sobre");
+  res.render("sobre");
 });
 
 app.get("/login", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/login
-  res.render(login);
+  console.log("POST /login");
+  res.render("login");
 });
 
 app.get("/login", (req, res) => {
+  console.log("GET /login");
   res.send("Login ainda não implementado.");
 });
 
 app.get("/cadastro", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/cadastro
-  res.send(cadastro);
+  console.log("GET /cadastro");
+  res.render("cadastro");
 });
 
 app.post("/cadastro", (req, res) => {
   // Linha para deourar se está vindo dados no req.body
+  console.log("GET /cadastro");
   !req.body
     ? console.log(`Body vazio: ${req.body}`)
     : console.log(JSON.stringify(req.body));
-  res.send(cadastro);
 
   // Colocar aqui as validações e inclusão no banco de dados do cadastro do usuário
 
@@ -86,5 +90,3 @@ app.post("/cadastro", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Servidor sendo executado na porta ${PORT}!`);
 });
-
-/// oi
