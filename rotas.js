@@ -37,6 +37,7 @@ const index =
   "<a href='/sobre'>Sobre </a><a href='/cadastro'>Cadastro </a><a href='/login'>Login </a>";
 const sobre = 'Você está na página "Sobre"<br><a href="/">Voltar</a>';
 const login = 'Você está na página "Login"<br><a href="/">Voltar</a>';
+const cadastro = 'Você estpa na página "Cadastro"<br><a href= "/"></a>';
 
 /*Método express.get necessita de dois parâmetros
 Na ARROW FUNCTION, o primeiro são os dados do servidor (REQUISITION - 'req')
@@ -46,19 +47,19 @@ app.get("/", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/
   //res.send(index);
   console.log("GET /index");
-  res.render("index"); // Redireciona a ROTA cadastro
+  res.redirect("/cadastro"); // Redireciona a ROTA cadastro
 });
 
 app.get("/sobre", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/sobre
   console.log("GET /sobre");
-  res.render("sobre");
+  res.render("pages/sobre");
 });
 
 app.get("/login", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/login
   console.log("POST /login");
-  res.render("login");
+  res.render("pages/login");
 });
 
 app.get("/login", (req, res) => {
@@ -69,7 +70,11 @@ app.get("/login", (req, res) => {
 app.get("/cadastro", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/cadastro
   console.log("GET /cadastro");
-  res.render("cadastro");
+  res.render("pages/cadastro");
+});
+
+app.get("/dashboard", (req, res) => {
+  console.log("GET /dashboard");
 });
 
 app.post("/cadastro"),
