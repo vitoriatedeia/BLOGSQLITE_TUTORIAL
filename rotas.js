@@ -1,10 +1,13 @@
 const express = require("express"); // Importa lib do Express
 const sqlite3 = require("sqlite3"); // Importa lib do sqlite3
 const bodyParser = require("body-parser"); // Importa o body-parser
+const session = require("express-session");
 
 const app = express(); // Instância para o uso do Express
 
 const PORT = 8000; // Porta do TCP do servidr HTTP da aplicação
+
+let config = { titulo: "", rodape: "" };
 
 //Cria conexão com o banco de dados
 const db = new sqlite3.Database("user.db"); //Instância para uso do Sqlite3, e usa o arquivo 'user.db'
@@ -16,6 +19,14 @@ db.serialize(() => {
     (id INTEGER PRIMARY KEY AUTOINCREMENT, username TEXT, password TEXT, email TEXT, celular TEXT, cpf TEXT, rg TEXT)`
   );
 });
+
+app.use(
+  session({
+    secret: "qualquersenha",
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 
 // __dirname é a variável interna do nodejs que guarda o caminho absoluto do projeto
 //console.log(__dirname + "/static");
@@ -47,45 +58,85 @@ app.get("/", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/
   //res.send(index);
   console.log("GET /index");
-  res.redirect("/cadastro"); // Redireciona a ROTA cadastro
+
+  config = { titulo: "Blog da turma I2HNA - SESI Nova Odessa", rodape: "" };
+  res.render("pages/index", config); // Redireciona a ROTA cadastro
 });
 
 app.get("/sobre", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/sobre
   console.log("GET /sobre");
-  res.render("pages/sobre");
+
+  config = { titulo: "Blog da turma I2HNA - SESI Nova Odessa", rodape: "" };
+  res.render("pages/sobre", config);
 });
 
 app.get("/login", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/login
-  console.log("POST /login");
-  res.render("pages/login");
+  console.log("GET /login");
+  config = { titulo: "Blog da turma I2HNA - SESI Nova Odessa", rodape: "" };
+  res.render("pages/login", config);
 });
 
-app.get("/login", (req, res) => {
-  console.log("GET /login");
-  res.send("Login ainda não implementado.");
+app.get("/dashboard", (req, res) => {
+  console.log("GET /dashboard");
+  config = { titulo: "Blog da turma I2HNA - SESI Nova Odessa", rodape: "" };
+  res.render("pages/dashboard", config);
+});
+
+app.post("/login", (req, res) => {
+  console.log("POST /login");
+  const { username, password } = req.body;
+
+  // Consultar o usuário no banco de dados
+  const query = "SELECT * FROM users WHERE username = ?";
+  db.get(query, [username], (err, row) => {
+    if (err) throw err;
+
+    //Se usuário válido -> registr a sessão e redireciona para o dashboard
+    if (row) {
+      req.session.loggedin = true;
+      req.session.username = username;
+      res.redirect("/dashboard");
+    } //Se não, envia mensagem de erro (Usuário inválido)
+    else {
+      res.send("Usuário inválido.");
+    }
+  });
 });
 
 app.get("/cadastro", (req, res) => {
   // Rota raiz do meu servidor, acesse o browser com o endereço http://localhost:8000/cadastro
   console.log("GET /cadastro");
-  res.render("pages/cadastro");
+  config = { titulo: "Blog da turma I2HNA - SESI Nova Odessa", rodape: "" };
+  res.render("pages/cadastro", config);
 });
 
-app.get("/dashboard", (req, res) => {
-  console.log("GET /dashboard");
+app.get("/usuarios", (req, res) => {
+  const query = "SELECT * FROM users";
+  db.get(query, [], (err, row) => {
+    console.log(`GET /usuarios &{JSON.stringify(row)}`);
+    res.render("partials/usertable", config);
+  });
+});
+
+app.get("/cadastro", (req, res) => {
+  console.log("GET /cadastro");
+  !req.body
+    ? console.log(`Body vazio: ${req.body}`)
+    : console.log(`${JSON.stringify(req.body)}`);
+  res.send(cadastro);
 });
 
 app.post("/cadastro"),
   (req, res) => {
     // Linha para deourar se está vindo dados no req.body
-    console.log("GET /cadastro");
+    console.log("POST /cadastro");
     !req.body
       ? console.log(`Body vazio: ${req.body}`)
       : console.log(JSON.stringify(req.body));
 
-    const { username, passorwd, email, celular, cpf, rg } = req.body;
+    const { username, password, email, celular, cpf, rg } = req.body;
     // Colocar aqui as validações e inclusão no banco de dados do cadastro do usuário
     //1. Validar dados do usuário
     //2. Saber se le já existe no banco
@@ -93,7 +144,7 @@ app.post("/cadastro"),
       "SELECT * FROM users WHERE email=? OR cpf=? OR rg=? OR username=?";
     db.get(query, [email, cpf, rg, username], (err, row) => {
       if (err) throw err;
-      console.log(`${JSON.stringify(row)}`);
+
       if (row) {
         //A variável 'row' irá retonar os dados do banco de dados,
         // executado através do SQL, variável query

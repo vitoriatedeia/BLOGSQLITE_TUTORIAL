@@ -23,7 +23,7 @@
       </div>
 
       <!-- Formulário de cadastro -->
-      <form id="cadastroForm" method="post" action="/cadastro">
+      <form id="cadastroForm" method="post" action="/login">
         <!-- Identificação do formulário para manipulação no JavaScript -->
 
         <div class="title">
@@ -42,11 +42,11 @@
         </div>
 
         <!-- Campo de entrada para Email -->
-        <!-- <div class="input_data">
-          <input type="email" id="email" required /> -->
-        <!-- Campo para inserir o e-mail, obrigatório e com validação de formato -->
-        <!-- <label>Email</label>
-        </div> -->
+        <div class="input_data">
+          <input type="email" id="email" required />
+          <!-- Campo para inserir o e-mail, obrigatório e com validação de formato -->
+          <label>Email</label>
+        </div>
 
         <!-- Campo de entrada para Senha -->
         <!-- <div class="input_data">
@@ -104,6 +104,6 @@
         </div>
       </form>
     </section>
-    <%- include ("../.partials/footer") %>
+    <%- include ("../partials/footer") %>
   </body>
 </html>
