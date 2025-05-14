@@ -1,17 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <%- include("../partials/head") %>
-  
-<body>
-  <header>
+<header>
     <a href="" class="logo">LOGO</a>
     <nav>
+      <% if (!req.session.loggedin) { %>
       <a href="">Home</a>
       <a href="/sobre">Sobre</a>
       <a href="/cadastro">Cadastro</a>
       <a href="/login">Login</a>
-      <!-- <a href="/foradecasa">Lugar nenhum</a> -->
+      <a href="/dashboard">Usuários</a>
+      <%  } else { %>
+      <a href="/sobre">Sobre</a>
+      <!-- <a href="/cadastro">Cadastro</a> -->
+      <a href="/dashboard">Usuários</a>
+      <a href="/logout">Logout</a>
+      <%  } %>
     </nav>
   </header>  
 </body>
