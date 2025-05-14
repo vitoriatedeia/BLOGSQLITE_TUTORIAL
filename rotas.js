@@ -154,7 +154,21 @@ app.post("/login", (req, res) => {
 
 app.get("/dashboard", (req, res) => {
   console.log("GET /dashboard");
-  res.render("pages/dashboard", { ...config, req: req });
+  console.log(JSON.stringify(config));
+
+  if (req.session.loggedin) {
+    db.all("SELECT * FROM users", [], (err, row) => {
+      if (err) throw err;
+      res.render("pages/dashboard", {
+        titulo: "DASHBOARD",
+        dados: row,
+        req: req,
+      });
+    });
+  } else {
+    console.log("Tentativa de acesso a área restrita");
+    res.redirect("/");
+  }
 });
 
 app.get("/logout", (req, res) => {
@@ -165,6 +179,7 @@ app.get("/logout", (req, res) => {
 });
 
 app.use("*", (req, res) => {
+  config = { titulo: "Blog da turma I2HNA - SESI Nova Odessa", rodape: "" };
   // Envia uma resposta de erro 404
   res.status(404).render("pages/erro", { req: req });
 });
