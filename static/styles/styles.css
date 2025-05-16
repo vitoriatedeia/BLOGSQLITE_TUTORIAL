@@ -289,3 +289,26 @@ header nav a:hover {
   color: #0f2a1d;
   transition: 0.7s;
 }
+
+table {
+  margin: 20px 0;
+  box-shadow: 0 0 10px black;
+}
+
+.usertable {
+  background-color: rgb(35, 35, 114);
+}
+
+.usertable th {
+  padding: 12px;
+  color: #0f2a1d;
+}
+
+tbody td {
+  padding: 12px;
+}
+
+tbody tr:hover {
+  background-color: rgba(108, 137, 218, 0.425);
+  transition: background-color 0.2s;
+}
