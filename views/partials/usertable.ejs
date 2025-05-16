@@ -9,14 +9,15 @@
     </tr>
   </thead>
   <tbody>
-    <% let index = 1; dados.forEach(user => { %>
-    <tr <%- req.session.username==user.username ? `style="color: white; font-style: bold;"` : `` %>>
-      <td><%= user.id %></td>
-      <td><%=user.username%></td>
-      <td><%=user.email%></td>
-      <td><%=user.celular%></td>
-      <td><%=user.password%></td>
+    <%# let index = 1; dados.forEach(user => { %> 
+    <% for(let i= 0; i < dados.length; i++) { %>
+    <tr <%- req.session.username==dados.username ? `style="color: white; font-style: bold;"` : `` %>>
+      <td><%= dados.id %></td>
+      <td><%=dados.username%></td>
+      <td><%=dados.email%></td>
+      <td><%=dados.celular%></td>
+      <td><%=dados.password%></td>
     </tr>
-    <% index++}); %>
+    <%}; %>
   </tbody>
 </table>
