@@ -71,6 +71,14 @@ app.get("/usuarios", (req, res) => {
   });
 });
 
+app.get("/errorLogin", (req, res) => {
+  res.render("pages/paginaerros", {
+    ...config,
+    req: req,
+    error: "Login inválido!",
+  });
+});
+
 app.get("/cadastro", (req, res) => {
   console.log("GET /cadastro");
   if (!req.session.loggedin) {
@@ -99,7 +107,7 @@ app.post("/cadastro", (req, res) => {
     if (row) {
       //A variável 'row' irá retonar os dados do banco de dados,
       // executado através do SQL, variável query
-      res.send("Usuário já cadastrado, refaça o cadastro");
+      res.render("pages/usuariojacadastrado", { ...config, req: req });
     } else {
       //3. Se o usuário não existe no banco cadastrar
       const insertQuery =
@@ -110,7 +118,7 @@ app.post("/cadastro", (req, res) => {
         (err) => {
           //Inserir a lógica do INSERT
           if (err) throw err;
-          res.send("Usuário cadastrado com sucesso");
+          res.render("pages/usuariocadastrado", { ...config, req: req });
         }
       );
     }
@@ -147,7 +155,8 @@ app.post("/login", (req, res) => {
       res.redirect("/dashboard");
     } //Se não, envia mensagem de erro (Usuário inválido)
     else {
-      res.send("Usuário inválido.");
+      console.log("HELLO");
+      res.redirect("/errorLogin");
     }
   });
 });
@@ -176,6 +185,10 @@ app.get("/logout", (req, res) => {
   req.session.destroy(() => {
     res.redirect("/login");
   });
+});
+
+app.get("/usuarioinvalido", (req, res) => {
+  res.render("pages/");
 });
 
 app.use("*", (req, res) => {
